@@ -75,16 +75,18 @@ maliciousDict= []
 print(resultsJson['verdicts']['overall'])
 malicious={
         'score':resultsJson['verdicts']['overall']['score'],
-        'malicious':resultsJson['verdicts']['overall']['malicious']
+        'malicious':resultsJson['verdicts']['overall']['malicious'],
         'hasVerdict':resultsJson['verdicts']['overall']['hasVerdicts']
     }
-maliciousDict.append(malicious)
-
-'''
-for entry in resultsJson['verdicts']['overall']:
-    malicious={
-        'score':entry['score'],
-        'malicious':entry['hasVerdicts']
-    }'''
-    
+maliciousDict.append(malicious)    
 print(maliciousDict)
+
+
+
+#create a new json to compile other json 
+with open("urlScanResults.json",'w') as json_file:
+    #json.dump(locationDict, json_file, indent=4)
+    #json.dump(tlsDict, json_file, indent=4)
+    #json.dump(maliciousDict, json_file, indent=4)
+    combineDict= {**locationDict,**tlsDict,**maliciousDict}
+    json.dump(combineDict, json_file, indent=4)
