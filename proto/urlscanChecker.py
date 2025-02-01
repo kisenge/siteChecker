@@ -54,7 +54,7 @@ tlsDict= []
 for entry in resultsJson['stats']['tlsStats']:
     tls={
         'protocols':entry['protocols'],
-        'securityState':entry['securityState']
+        'urlscan_securityState':entry['securityState']
     }
     tlsDict.append(tls)
 
@@ -74,12 +74,13 @@ print(tlsDict)
 maliciousDict= []
 print(resultsJson['verdicts']['overall'])
 malicious={
-        'score':resultsJson['verdicts']['overall']['score'],
-        'malicious':resultsJson['verdicts']['overall']['malicious'],
-        'hasVerdict':resultsJson['verdicts']['overall']['hasVerdicts']
+        'urlscan_score':resultsJson['verdicts']['overall']['score'],
+        'urlscan_malicious':resultsJson['verdicts']['overall']['malicious'],
+        'urlscan_hasVerdict':resultsJson['verdicts']['overall']['hasVerdicts']
     }
 maliciousDict.append(malicious)    
 print(maliciousDict)
+
 
 
 
@@ -88,5 +89,25 @@ with open("urlScanResults.json",'w') as json_file:
     #json.dump(locationDict, json_file, indent=4)
     #json.dump(tlsDict, json_file, indent=4)
     #json.dump(maliciousDict, json_file, indent=4)
-    combineDict= {**locationDict,**tlsDict,**maliciousDict}
+    combineDict= {**locationDict[0],**tlsDict[0],**maliciousDict[0]}
     json.dump(combineDict, json_file, indent=4)
+
+
+with open("MozillaObserveFull.json",'r') as json_file:
+    mozillaObserve= json.load(json_file)
+    
+with open("jsonMozilla.json",'r') as json_file:
+    mozilla= json.load(json_file)
+
+with open("urlScanResults.json",'r') as json_file:
+    finalJson=json.load(json_file)   
+
+
+finalJson['time']=mozilla["scanned_at"]
+finalJson['mozilla_grade']=mozilla["grade"]
+finalJson['mozilla_score']=mozilla["score"]
+finalJson["mozilla_test_results"]=mozillaObserve
+
+# Step 3: Write the updated JSON back to the file
+with open("jsonAPI.json", "w") as file:
+    json.dump(finalJson, file, indent=4)

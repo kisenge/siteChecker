@@ -1,0 +1,81 @@
+{
+    "ip": "185.146.173.20",
+    "country": "Sweden",
+    "ll": [
+        59.3247,
+        18.056
+    ],
+    "protocols": [
+        "TLS 1.3 // AES_128_GCM",
+        "QUIC // AES_128_GCM"
+    ],
+    "urlscan_securityState": "secure",
+    "urlscan_score": 0,
+    "urlscan_malicious": false,
+    "urlscan_hasVerdict": false,
+    "time": "2025-02-01T15:25:07.805Z",
+    "mozilla_grade": "C",
+    "mozilla_score": 55,
+    "mozilla_test_results": [
+        {
+            "Test": "Content Security Policy (CSP)",
+            "Score": "Failed",
+            "Reason": "Content Security Policy (CSP) header not implemented",
+            "Recommendation": "Implement one, seeMDN's Content Security Policy (CSP) documentation."
+        },
+        {
+            "Test": "Cookies",
+            "Score": "Not Applicable",
+            "Reason": "No cookies detected",
+            "Recommendation": "None"
+        },
+        {
+            "Test": "Cross Origin Resource Sharing (CORS)",
+            "Score": "Not Applicable",
+            "Reason": "Content is not visible via cross-origin resource sharing (CORS) files or headers.",
+            "Recommendation": "None"
+        },
+        {
+            "Test": "Redirection",
+            "Score": "Not Applicable",
+            "Reason": "Initial redirection is to HTTPS on same host, final destination is HTTPS",
+            "Recommendation": "None"
+        },
+        {
+            "Test": "Referrer Policy",
+            "Score": "Not Applicable",
+            "Reason": "Referrer-Policyheader not implemented.",
+            "Recommendation": "Set tostrict-origin-when-cross-originat a minimum."
+        },
+        {
+            "Test": "Strict Transport Security (HSTS)",
+            "Score": "Failed",
+            "Reason": "Strict-Transport-Securityheader set to less than six months (15768000).",
+            "Recommendation": "Increase HSTS period."
+        },
+        {
+            "Test": "Subresource Integrity",
+            "Score": "Failed",
+            "Reason": "Subresource Integrity (SRI) not implemented, but all external scripts are loaded over HTTPS.",
+            "Recommendation": "Add SRI to external scripts."
+        },
+        {
+            "Test": "X-Content-Type-Options",
+            "Score": "Failed",
+            "Reason": "X-Content-Type-Optionsheader not implemented.",
+            "Recommendation": "Set tonosniff."
+        },
+        {
+            "Test": "X-Frame-Options",
+            "Score": "Failed",
+            "Reason": "X-Frame-Options(XFO) header cannot be recognized.",
+            "Recommendation": "Implement frame-ancestors CSP."
+        },
+        {
+            "Test": "Cross Origin Resource Policy",
+            "Score": "Not Applicable",
+            "Reason": "Cross Origin Resource Policy (CORP) is not implemented (defaults tocross-origin).",
+            "Recommendation": "None"
+        }
+    ]
+}
