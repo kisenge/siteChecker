@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'urlScannerApi.urls'
+ROOT_URLCONF = 'scannerApiProject.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'urlScannerApi.wsgi.application'
+WSGI_APPLICATION = 'scannerApiProject.wsgi.application'
 
 
 # Database
