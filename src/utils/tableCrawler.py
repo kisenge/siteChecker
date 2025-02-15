@@ -34,22 +34,16 @@ def crawlMozillaResultsTable(siteUrl):
 
     # Close the WebDriver (you no longer need it once you have the page source)
     driver.quit()
-    print('wtf')
     # Find the table with class "tests"
     table = soup.find('table', {'class': 'tests'})
 
-    
-    print(type(table))
-    
-
-    
-    
+  
 
 
     if table is not None:
         rows = table.find_all('tr')
         headers = [header.get_text(strip=True) for header in rows[0].find_all('th')]
-        print(headers)
+        #print(headers)
 
         # Extract rows from the <tbody>
         tbody = table.find('tbody')
@@ -57,12 +51,11 @@ def crawlMozillaResultsTable(siteUrl):
 
         
 
-        
         # `I`terate over each row and extract the data
         for row in rows:
             cols = row.find_all('td')  # Find each column (td)
             colData = [col.get_text(strip=True) for col in cols]  # Extract text data
-            print('\t'.join(colData))  # Print columns separated by tabs
+            #print('\t'.join(colData))  # Print columns separated by tabs
 
             rowDict= dict(zip(headers,colData))
             tableData.append(rowDict)
@@ -70,7 +63,6 @@ def crawlMozillaResultsTable(siteUrl):
 
         with open('MozillaObserveFull.json', 'w') as json_file:
             json.dump(tableData, json_file, indent=4)   
-
 
 
         #Clean pass/fail in json
@@ -89,20 +81,19 @@ def crawlMozillaResultsTable(siteUrl):
                 entry['Score']="Not Applicable"
 
 
-            
+    
     else:
         
         jsonData={'message':'Error crawling Mozilla Observe result table'}
-        print(jsonData)
+        #print(jsonData)
     
 
     
     
 
-    #To print to json file
-    
-    with open('MozillaObserveFull.json', 'w') as json_file:
-        json.dump(jsonData, json_file, indent=4) 
+    #To write to json file
+    """ with open('MozillaObserveFull.json', 'w') as json_file:
+        json.dump(jsonData, json_file, indent=4)  """
 
     return jsonData  
     
