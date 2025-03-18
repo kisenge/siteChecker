@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('submit-ur/',views.startBackgroundTask),
-    path('get/<int:taskID>',views.getData),
+    path('getData/<int:taskID>',views.getData),
 ]
