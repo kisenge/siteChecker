@@ -1,0 +1,62 @@
+[
+    {
+        "Test": "Content Security Policy (CSP)",
+        "Score": "\u221225Failed",
+        "Reason": "Content Security Policy (CSP) reporting implemented only, withContent-Security-Policy-Report-Onlyheader.",
+        "Recommendation": "Implement an enforced policy, seeMDN's Content Security Policy (CSP) documentation."
+    },
+    {
+        "Test": "Cookies",
+        "Score": "0*Passed",
+        "Reason": "All cookies use theSecureflag, session cookies use theHttpOnlyflag, and cross-origin restrictions are in place via theSameSiteflag.",
+        "Recommendation": "None"
+    },
+    {
+        "Test": "Cross Origin Resource Sharing (CORS)",
+        "Score": "0Passed",
+        "Reason": "Public content is visible via cross-origin resource sharing (CORS)Access-Control-Allow-Originheader.",
+        "Recommendation": "None"
+    },
+    {
+        "Test": "Redirection",
+        "Score": "0Passed",
+        "Reason": "Initial redirection is to HTTPS on same host, final destination is HTTPS",
+        "Recommendation": "None"
+    },
+    {
+        "Test": "Referrer Policy",
+        "Score": "\u22125Failed",
+        "Reason": "Referrer-Policyheader set unsafely toorigin,origin-when-cross-origin,unsafe-urlorno-referrer-when-downgrade.",
+        "Recommendation": "Set to strict-origin-when-cross-origin at a minimum"
+    },
+    {
+        "Test": "Strict Transport Security (HSTS)",
+        "Score": "0Passed",
+        "Reason": "Strict-Transport-Securityheader set to a minimum of six months (15768000).",
+        "Recommendation": "Consider preloading: this requires adding thepreloadandincludeSubDomainsdirectives and settingmax-ageto at least31536000(1 year), and submitting your site tohttps://hstspreload.org/."
+    },
+    {
+        "Test": "Subresource Integrity",
+        "Score": "-",
+        "Reason": "Subresource Integrity (SRI) not implemented, but all scripts are loaded from a similar origin.",
+        "Recommendation": "Add SRI for bonus points."
+    },
+    {
+        "Test": "X-Content-Type-Options",
+        "Score": "0Passed",
+        "Reason": "X-Content-Type-Optionsheader set tonosniff.",
+        "Recommendation": "None"
+    },
+    {
+        "Test": "X-Frame-Options",
+        "Score": "0Passed",
+        "Reason": "X-Frame-Options(XFO) header set toSAMEORIGINorDENY.",
+        "Recommendation": "Implement frame-ancestors CSP."
+    },
+    {
+        "Test": "Cross Origin Resource Policy",
+        "Score": "-",
+        "Reason": "Cross Origin Resource Policy (CORP) is not implemented (defaults tocross-origin).",
+        "Recommendation": "None"
+    }
+]

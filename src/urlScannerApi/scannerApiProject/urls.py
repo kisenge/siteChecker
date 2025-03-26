@@ -23,8 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('scannerApiApp.urls')),
 
-    path('',views.getData),
-    path('post/',views.postData)
+    path('get/',views.getData),
+    path('post/',views.postData) 
 ]
 
 

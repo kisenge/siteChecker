@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.getData),
-    path('post/',views.postData)
+    path('submit-ur/',views.startBackgroundTask),
+    path('getData/<int:taskID>',views.getData),
 ]
