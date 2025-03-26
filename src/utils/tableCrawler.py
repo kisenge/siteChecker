@@ -4,18 +4,66 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options 
 from bs4 import BeautifulSoup
 import time
 import json
+import asyncio
+from pyppeteer import launch
+
 
 def crawlMozillaResultsTable(siteUrl):
+
+    
+   
+
+    chromePath = r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+
+     # Create the asyncio event loop
+    loop = asyncio.get_event_loop()
+
+    try:
+        browser = loop.run_until_complete(launch(executablePath=chromePath, headless=True))
+
+        #Launch the browser
+        #browser = loop.run_until_complete(launch(headless=True))
+
+        #Create a new page
+        page = loop.run_until_complete(browser.newPage())
+
+        #Isolate domain from url
+        website = siteUrl.split('://')[1]
+        domain = website.split('/')[0]
+
+
+        #Navigate to the page and wait for it to load
+        loop.run_until_complete(page.goto('https://developer.mozilla.org/en-US/observatory/analyze?host='+domain, {'waitUntil': 'networkidle0'}))
+
+        pageSource = loop.run_until_complete(page.content())
+        print(pageSource)
+
+        loop.run_until_complete(browser.close())
+
+
+    except Exception as e:
+        # Catch any exception and print the error message
+        print(f"Error occurred: {e}")
+        jsonData={'message':'Error crawling Mozilla Observe result table'}
+        return jsonData
+
+    
     # Path to your ChromeDriver (download it if you haven't already)
     chrome_driver_path = r"C:\Users\kisen\Projects\siteChecker\src\utils\chromedriver.exe"
 
+    
+    '''
+    options= Options()
+    options.headless= True
+
     # Initialize Selenium WebDriver
     #service = Service(chrome_driver_path)
-    #driver = webdriver.Chrome(service=service)
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    #driver = webdriver.Chrome(service=service,options=options)
+    #driver = webdriver.Chrome(ChromeDriverManager().install())
 
     #Isolate domain from url
     website = siteUrl.split('://')[1]
@@ -26,17 +74,21 @@ def crawlMozillaResultsTable(siteUrl):
     driver.get(url)
 
     # Wait for the page to load and for JavaScript to render the table
-    time.sleep(10)  # Adjust the time as needed for the page to fully load
-
+    #time.sleep(10)  # Adjust the time as needed for the page to fully load
+    driver.implicitly_wait(10)
     # Get the page source and parse it with BeautifulSoup
     page_source = driver.page_source
     soup = BeautifulSoup(page_source, 'html.parser')
 
     tableData=[]
 
-    # Close the WebDriver (you no longer need it once you have the page source)
+    # Close the WebDriver 
     driver.quit()
+    '''
+
     # Find the table with class "tests"
+    soup = BeautifulSoup(pageSource,'html.parser')
+    tableData=[]
     table = soup.find('table', {'class': 'tests'})
 
   

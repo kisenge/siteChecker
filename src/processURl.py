@@ -7,7 +7,7 @@ from utils.urlscanChecker import callUrlScanApi
 
 #scan Mozilla results table
 mozillaTestResults=crawlMozillaResultsTable('https://www.postman.com/downloads/postman-agent/')
-
+#print(mozillaTestResults)
 #call Mozilla Api
 mozillaApiResults= callMozillaApi('https://www.postman.com/downloads/postman-agent/')
 
@@ -15,8 +15,8 @@ mozillaApiResults= callMozillaApi('https://www.postman.com/downloads/postman-age
 urlScanApiResults= callUrlScanApi('https://www.postman.com/downloads/postman-agent/')
 
 
-combinedDict= {**mozillaTestResults,**mozillaApiResults,**urlScanApiResults}
-print(combinedDict)
+#combinedDict= {**mozillaTestResults,**mozillaApiResults,**urlScanApiResults}
+#print(combinedDict)
 
 
 
